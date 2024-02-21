@@ -18,24 +18,24 @@ const peerServer = ExpressPeerServer(server, {
 app.set('view engine', 'ejs');
 app.use(express.static('public'))   //saying server that public file is there and we are gone to put the js and css files oveerthere and take it them from there
 
-app.use('/peerjs',peerServer);
+app.use('/peerjs', peerServer);
 
 app.get('/', (req, res) => {    //ed6 req and res
-    res.redirect(`/${uuid4()}`);    //Its going to generate the new id and redirect it to client
+  res.redirect(`/${uuid4()}`);    //Its going to generate the new id and redirect it to client
 
 })
 
 app.get('/:room', (req, res) => {
-    res.render('room', { roomId: req.params.room }); //which file we are going to render simply which .ejs file we are going to read
+  res.render('room', { roomId: req.params.room }); //which file we are going to render simply which .ejs file we are going to read
 })
 
 //Telling socket that we join room  
 io.on('connection', (socket) => { //when user connect
-    socket.on('join-room', (roomId,userId) => {
-        console.log('joinroom')
-        socket.join(roomId);
-        socket.to(roomId).emit('user-connected',userId);
-    })
+  socket.on('join-room', (roomId, userId) => {
+    console.log('joinroom')
+    socket.join(roomId);
+    socket.to(roomId).emit('user-connected', userId);
+  })
 });
 
 server.listen(3030);    //3030 number na port pr server have server accept krse requests or connection
