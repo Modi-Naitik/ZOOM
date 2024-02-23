@@ -41,5 +41,5 @@ io.on('connection', (socket) => { //when user connect
   })
 });
 
-server.listen(3030);    //3030 number na port pr server have server accept krse requests or connection
+server.listen(process.env.PORT||3030)   //3030 number na port pr server have server accept krse requests or connection
 
