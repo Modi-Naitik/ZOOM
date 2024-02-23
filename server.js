@@ -35,6 +35,9 @@ io.on('connection', (socket) => { //when user connect
     console.log('joinroom')
     socket.join(roomId);
     socket.to(roomId).emit('user-connected', userId);
+    socket.on('message',message=>{
+      io.to(roomId).emit('createMessage',message);
+    })
   })
 });
 
