@@ -6,11 +6,11 @@ const myvideo = document.createElement('video');
 myvideo.muted = true;
 // import Peer from 'peerjs';
 
-// var peer = new Peer(undefined, {
-//     path: '/peerjs',
-//     host: '/',
-//     port: '3030'
-// })
+var peer = new Peer(undefined, {
+    path: '/peerjs',
+    host: '/',
+    port: '443'
+})
 var peer = new Peer();
 navigator.mediaDevices.getUserMedia({ //we can attemp to access the webcame and mike of client through this.
     video: true,
@@ -128,6 +128,7 @@ const setStopVideo = () => {
       <span>Stop Video</span>
     `
     document.querySelector('.main__video_button').innerHTML = html;
+    // document.querySelector('#video-grid').setAttribute('border:0px solid black');
 }
 
 const setPlayVideo = () => {
